@@ -1,0 +1,39 @@
+<!Doctype html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script>
+        angular.module('myApp',[]).controller('MyController', function ($scope){
+            //$scope.message = 'Hello';
+        }).directive('hwdirective', function(){
+            //returns a directive definition object
+            return{
+                restrict: 'A',    // A-attribute, E-element, C-class, M-comments
+                templateUrl: 'partials/_hw_directive.html',
+                scope: true,
+                link: function (scope, element, attributes){
+                    //console.log(element[0]);    //jqlite element (Angular's jqlite)
+
+                    element[0].lastElementChild.addEventListener('click', function(){
+                        console.log('Hello World..!!!');
+                        scope.$apply(function(){
+                            scope.message = "Hello GoliveLabs";
+                        });
+                        console.log(scope.message);
+                    });
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+<div>The scope message is: "{{message}}"</div>
+<div hwdirective></div>
+<div nd-controller="MyController">
+    <div>The scope message is: "{{message}}"</div>
+    <div hwdirective></div>
+</div>
+</body>
+</html>

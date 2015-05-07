@@ -1,0 +1,25 @@
+<!Doctype html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body{
+            width: 500px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="utility.js"></script>
+    <script>
+        angular.module('myApp',['utility']);
+        //console.log('From the main page');
+    </script>
+</head>
+<body>
+        <div geolocation>
+        </div>
+</body>
+</html>

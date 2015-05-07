@@ -1,0 +1,19 @@
+<!Doctype html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="utility.js"></script>
+    <script>
+        angular.module('myApp',['utility']);
+    </script>
+</head>
+<body>
+        <div>
+            <input type="text" name="username" placeholder="username" local/>
+            <input type="text" name="name" placeholder="name" local/>
+            <input type="email" name="email" placeholder="email" local/>
+        </div>
+</body>
+</html>

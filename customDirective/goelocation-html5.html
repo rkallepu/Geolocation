@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        html, body{
+            width: 500px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+        /*window.addEventListener('load', function(){
+            window.navigator.geolocation.getCurrentPosition(function (obj) {
+                console.log(obj);
+                var coords = obj.coords;
+                new google.maps.Map(document.body, {
+                    zoom: 16,
+                    center: new google.maps.LatLng(coords.latitude, coords.longitude)
+                });
+            },function (){
+
+            });
+        });*/
+
+        function createLoadPromise(){
+            return new Promise(function(resolve, reject){
+               window.addEventListener('load', function(){
+                   resolve();
+               });
+                window.addEventListener('error', function(){
+                   reject();
+                });
+            });
+        }
+        function createNavigatePromise(){
+            return new Promise(function(resolve, reject){
+               window.navigator.geolocation.getCurrentPosition(function(obj){
+                   resolve(obj);
+               }, function(){
+                   reject();
+               });
+            });
+        }
+        Promise.all([createLoadPromise(), createNavigatePromise()]).then(function (data){
+            console.log(data);
+            var coords = data[1].coords;
+            var map = new google.maps.Map(document.body,{
+                zoom: 16,
+                center: new google.maps.LatLng(coords.latitude, coords.longitude)
+            });
+            new google.maps.Marker({
+                position: new google.maps.LatLng(coords.latitude, coords.longitude),
+                map: map,
+                title: 'rashmika'
+            });
+        });
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+</body>
+</html>
