@@ -5,21 +5,42 @@
     <title></title>
     <style>
         html, body{
+            width:1000px;
+            margin:0;
+            padding:0;
+        }
+        #diplayMap{
             width: 500px;
-            height: 100%;
-            margin: 0 auto;
+            float:left;
+            height: 500px;
+            /*margin: 0 auto;*/
             padding: 20px;
+        }
+        #myInput{
+            float:left;
+            width:400px;
         }
     </style>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="utility.js"></script>
     <script>
-        angular.module('myApp',['utility']);
+        angular.module('myApp',['utility']).controller('MyController', function($scope){
+            $scope.message = 'Enter the City Name to Know the Weather';
+            $scope.getWeather = function(){
+                $scope.city = document.getElementById('city').value;
+                console.log($scope.city);
+            };
+        });
         //console.log('From the main page');
     </script>
 </head>
 <body>
-        <div geolocation>
-        </div>
+    <div id="diplayMap" geolocation>
+    </div>
+    <div id="myInput" ng-controller="MyController">
+        <h1>{{message}}</h1>
+        <input type="text" id="city" name="city" placeholder="enter city name" />
+        <button ng-click="getWeather()">Submit</button>
+    </div>
 </body>
 </html>
