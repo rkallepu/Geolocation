@@ -26,21 +26,22 @@
     <script>
         angular.module('myApp',['utility']).controller('MyController', function($scope){
             $scope.message = 'Enter the City Name to Know the Weather';
-            $scope.getWeather = function(){
+            $scope.city ='san francisco';
+            $scope.getWeather = function(event){
                 $scope.city = document.getElementById('city').value;
-                console.log($scope.city);
+                //console.log($scope.city);
             };
         });
         //console.log('From the main page');
     </script>
 </head>
-<body>
+<body ng-controller="MyController">
     <div id="diplayMap" geolocation>
     </div>
-    <div id="myInput" ng-controller="MyController">
+    <div id="myInput" >
         <h1>{{message}}</h1>
         <input type="text" id="city" name="city" placeholder="enter city name" />
-        <button ng-click="getWeather()">Submit</button>
+        <button ng-click="getWeather($event)">Submit</button>
     </div>
 </body>
 </html>

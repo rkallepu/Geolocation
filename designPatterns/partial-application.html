@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function sum(a, b){
+            if(arguments.length === 1) return sum.bind(null,a);
+            else if(arguments.length === 2)
+                return a + b;
+        }
+
+        console.log(sum(2));
+
+        console.log(sum(2)(3));
+
+        function partial(fn){
+            //returns partially applied version of that function
+            return function(){
+                if(fn.length === arguments.length)
+                    return fn.apply(null, arguments);
+                else{
+                    var args = Array.prototype.slice.call(arguments);
+                    args.unshift(null);
+                    return Function.prototype.bind.apply(fn, args);
+                }
+            };
+        }
+        function add(a,b){
+            return a + b;
+        }
+        var padd = partial(add);
+        console.log(padd(2,3));
+        console.log(add(2));
+        console.log(padd(2)(3));
+    </script>
+</head>
+<body>
+
+</body>
+</html>
