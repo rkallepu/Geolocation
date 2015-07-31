@@ -1,1 +1,4 @@
-# magellan-May-07
+# Random Practise
+Geolocation
+Local Storage
+Design Patterns
